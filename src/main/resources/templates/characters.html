@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Character List</title>
+</head>
+<body>
+<div class="container">
+    <div class="column">
+        <!-- Your content for the first column goes here -->
+    </div>
+    <div class="maincolumn">
+        <!-- Your content for the second column goes here -->
+        <h1>Character List</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Character Class</th>
+            </tr>
+            <tr th:each="character : ${characters}">
+                <td th:text="${character.id}"></td>
+                <td th:text="${character.name}"></td>
+                <td th:text="${character.level}"></td>
+                <td th:text="${character.characterClass}"></td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <button type="button" class="btn btn-light" onclick="window.location.href='http://localhost:8080/create'">New Character</button>
+            <button type="button" class="btn btn-light">Lorem Ipsum</button>
+            <button type="button" class="btn btn-light">Lorem Ipsum</button>
+        </div>
+    </div>
+    <div class="column">
+
+    </div>
+</div>
+
+</body>
+</html>

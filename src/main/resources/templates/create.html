@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create New Character</title>
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Link to your custom CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Form to enter information for a new character -->
+<h1>Create New Character</h1>
+<form id="createCharacterForm" action="/characters/" method="post">
+  <label for="name">Name:</label>
+  <input type="text" class="form-control" id="name" name="name" required>
+  <br>
+  <label for="level">Level:</label>
+  <input type="number" class="form-control" id="level" name="level" required>
+  <br>
+  <label for="characterClass">Class:</label>
+  <input type="text" class="form-control" id="characterClass" name="characterClass" required>
+  <br>
+  <input type="submit" class="btn btn-dark" value="Create Character">
+</form>
+<script src="script.js"></script>
+</body>
+</html>
