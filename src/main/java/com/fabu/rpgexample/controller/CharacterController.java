@@ -1,12 +1,15 @@
 package com.fabu.rpgexample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.fabu.rpgexample.model.CharacterModel;
 import com.fabu.rpgexample.service.CharacterService;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -46,15 +49,18 @@ public class CharacterController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteCharacter(@PathVariable Long id) {
         boolean deleted = characterService.deleteCharacter(id);
         if (deleted) {
+            System.out.println("Eliminado correctamente");
             return ResponseEntity.noContent().build();
         } else {
+            System.out.println("No se ha eliminado");
             return ResponseEntity.notFound().build();
         }
     }
+
 
     // Handler method to create a new character
     @PostMapping("/")

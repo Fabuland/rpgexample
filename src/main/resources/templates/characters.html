@@ -21,12 +21,28 @@
                 <th>Name</th>
                 <th>Level</th>
                 <th>Character Class</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
             <tr th:each="character : ${characters}">
                 <td th:text="${character.id}"></td>
                 <td th:text="${character.name}"></td>
                 <td th:text="${character.level}"></td>
                 <td th:text="${character.characterClass}"></td>
+                <td>
+                    <form id="deleteCharacterSubmit" th:action="@{/characters/delete/} + ${character.id}" th:method="delete" >
+                        <button type="submit" class="btn btn-light border border-dark">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form id="editCharacter" th:action="@{'/characters/edit/{id}'(id=${character.id})}" th:method="edit" >
+                        <button type="submit" class="btn btn-light border border-dark" onclick="redirectToEdit(event)">
+                            Edit
+                        </button>
+                    </form>
+                </td>
             </tr>
         </table>
         <div class="buttons">
@@ -39,6 +55,6 @@
 
     </div>
 </div>
-
+<script src="script.js"></script>
 </body>
 </html>

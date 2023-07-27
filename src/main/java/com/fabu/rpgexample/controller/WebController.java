@@ -4,7 +4,9 @@ import com.fabu.rpgexample.model.CharacterModel;
 import com.fabu.rpgexample.service.CharacterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -30,12 +32,10 @@ public class WebController {
         return "create";
     }
 
-    /*// Handler method to handle form submission from "create.html" and redirect
-    @PostMapping("/characters/") // Updated path to match the form action
-    public String handleCreateFormSubmission(CharacterModel characterModel) {
-        characterService.createCharacter(characterModel);
-        // Add any additional processing here if needed
-        return "redirect:/"; // Redirect to the home page after creating the character
-    }*/
-
+    @DeleteMapping("/characters/delete/{id}")
+    public String deleteCharacterWeb(@PathVariable Long id) {
+        // Delete character using WebClient
+        // (Add your WebClient logic here)
+        return "redirect:/"; // Redirect to the home page after successful deletion
+    }
 }
