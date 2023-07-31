@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "characters")
+@Table(name = "charactermodel")
 public class CharacterModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Column(nullable = false, name = "name")
     private String name;
     @Column(nullable = false, name = "level")
