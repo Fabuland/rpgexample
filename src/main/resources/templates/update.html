@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Character</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<a href="#" class="logo" onclick="window.location.href='http://localhost:8080/index'">RPGEXAMPLE</a>
+<!-- Form to enter information for a new character -->
+<h1>Update Character</h1>
+<form action="#" th:action="@{/update/{id}(id=${charactermodel.id})}" th:object="${charactermodel}" method="post">
+    <div class="row">
+        <div class="form-group">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="level" class="col-form-label">Level</label>
+            <input type="text" th:field="*{level}" class="form-control" id="level" placeholder="Level">
+            <span th:if="${#fields.hasErrors('level')}" th:errors="*{level}" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="characterClass" class="col-form-label">Character Class</label>
+            <input type="text" th:field="*{characterClass}" class="form-control" id="characterClass" placeholder="Class">
+            <span th:if="${#fields.hasErrors('characterClass')}" th:errors="*{characterClass}" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Add Character">
+        </div>
+    </div>
+</form>
+</body>
+</html>

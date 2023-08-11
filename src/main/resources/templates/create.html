@@ -11,7 +11,7 @@
 <a href="#" class="logo" onclick="window.location.href='http://localhost:8080/index'">RPGEXAMPLE</a>
 <!-- Form to enter information for a new character -->
 <h1>Create New Character</h1>
-<form action="#" th:action="@{/addcharacter}" th:object="${charactermodel}" method="post">
+<form action="#" th:action="@{/add}" th:object="${characterModel}" method="post">
   <div class="row">
     <div class="form-group">
       <label for="name" class="col-form-label">Name</label>

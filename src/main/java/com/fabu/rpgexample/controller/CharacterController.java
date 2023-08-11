@@ -26,17 +26,17 @@ public class CharacterController {
         return "characters";
     }
 
-    @GetMapping("/createcharacter")
+    @GetMapping("/addcharacter")
     public String showCreateForm(Model model) {
-        model.addAttribute("charactermodel", new CharacterModel()); // Add an empty CharacterModel object to the model
-        System.out.println("Inside createch method");
+        model.addAttribute("characterModel", new CharacterModel()); // Add an empty CharacterModel object to the model
+        System.out.println("Inside addcharacter method");
         return "create";
     }
 
-    @PostMapping("/addcharacter")
-    public String addUser(@Valid CharacterModel characterModel, BindingResult result, Model model) {
+    @PostMapping("/add")
+    public String addCharacter(@Valid CharacterModel characterModel, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "redirect:/create";
+            return "create";
         }
 
         characterRepository.save(characterModel);
@@ -51,7 +51,7 @@ public class CharacterController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid CharacterModel characterModel, BindingResult result, Model model) {
+    public String updateCharacter(@PathVariable("id") long id, @Valid CharacterModel characterModel, BindingResult result, Model model) {
         if (result.hasErrors()) {
             characterModel.setId(id);
             return "update";

@@ -1,6 +1,7 @@
 package com.fabu.rpgexample.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 
 @Entity
@@ -11,17 +12,23 @@ public class CharacterModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, name = "name")
+    @NotEmpty(message = "The name can't be null")
+    @Size(min = 5, message = "The name needs more than 4 characters")
     private String name;
     @Column(nullable = false, name = "level")
-    private int level;
+    @NotEmpty(message = "The level can't be null")
+    @Min(value = 1, message = "The level can't be less than 1")
+    private Integer level;
     @Column(nullable = false, name = "characterclass")
+    @NotEmpty(message = "The class can't be null")
+    @Size(min = 3, message = "The class needs more than 2 characters")
     private String characterClass;
 
     // Constructors
     public CharacterModel() {
     }
 
-    public CharacterModel(String name, int level, String characterClass) {
+    public CharacterModel(String name, Integer level, String characterClass) {
         this.name = name;
         this.level = level;
         this.characterClass = characterClass;
@@ -44,11 +51,11 @@ public class CharacterModel {
         this.name = name;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
