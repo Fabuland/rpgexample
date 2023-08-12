@@ -11,14 +11,17 @@ public class CharacterModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(nullable = false, name = "name")
     @NotEmpty(message = "The name can't be null")
     @Size(min = 5, message = "The name needs more than 4 characters")
     private String name;
+
     @Column(nullable = false, name = "level")
-    @NotEmpty(message = "The level can't be null")
+    @NotNull(message = "The level can't be null")
     @Min(value = 1, message = "The level can't be less than 1")
     private Integer level;
+
     @Column(nullable = false, name = "characterclass")
     @NotEmpty(message = "The class can't be null")
     @Size(min = 3, message = "The class needs more than 2 characters")

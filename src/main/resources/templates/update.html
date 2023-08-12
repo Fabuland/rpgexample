@@ -11,7 +11,7 @@
 <a href="#" class="logo" onclick="window.location.href='http://localhost:8080/index'">RPGEXAMPLE</a>
 <!-- Form to enter information for a new character -->
 <h1>Update Character</h1>
-<form action="#" th:action="@{/update/{id}(id=${charactermodel.id})}" th:object="${charactermodel}" method="post">
+<form th:action="@{/update/{id}(id=${charactermodel.id})}" th:object="${charactermodel}" method="post">
     <div class="row">
         <div class="form-group">
             <label for="name" class="col-form-label">Name</label>
@@ -29,7 +29,8 @@
             <span th:if="${#fields.hasErrors('characterClass')}" th:errors="*{characterClass}" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Add Character">
+            <input type="hidden" th:attr="value=${charactermodel.id}" name="id">
+            <input type="submit" class="btn btn-primary" value="Update Character">
         </div>
     </div>
 </form>

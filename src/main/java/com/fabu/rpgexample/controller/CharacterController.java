@@ -29,17 +29,19 @@ public class CharacterController {
     @GetMapping("/addcharacter")
     public String showCreateForm(Model model) {
         model.addAttribute("characterModel", new CharacterModel()); // Add an empty CharacterModel object to the model
-        System.out.println("Inside addcharacter method");
+        System.out.println("Inside addcharacter page");
         return "create";
     }
 
     @PostMapping("/add")
     public String addCharacter(@Valid CharacterModel characterModel, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("charactermodel", characterModel);
             return "create";
         }
 
         characterRepository.save(characterModel);
+        System.out.println("Character added");
         return "redirect:/index";
     }
 
@@ -47,16 +49,24 @@ public class CharacterController {
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         CharacterModel characterModel = characterRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid character Id:" + id));
         model.addAttribute("charactermodel", characterModel);
+        System.out.println("Inside update page");
         return "update";
     }
 
     @PostMapping("/update/{id}")
-    public String updateCharacter(@PathVariable("id") long id, @Valid CharacterModel characterModel, BindingResult result, Model model) {
+    public String updateCharacter(@PathVariable("id") long id, @Valid CharacterModel charactermodel, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            characterModel.setId(id);
+            System.out.println("edit error -------------------------");
+            charactermodel.setId(id);
+            model.addAttribute("charactermodel", charactermodel); // Add the model attribute back to the model
             return "update";
         }
-        characterRepository.save(characterModel);
+        CharacterModel existingCharacter = characterRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid character Id:" + id));
+        existingCharacter.setName(charactermodel.getName());
+        existingCharacter.setLevel(charactermodel.getLevel());
+        existingCharacter.setCharacterClass(charactermodel.getCharacterClass());
+        characterRepository.save(existingCharacter);
+        System.out.println("Character updated");
         return "redirect:/index";
     }
 
